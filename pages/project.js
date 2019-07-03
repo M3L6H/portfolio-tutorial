@@ -23,7 +23,7 @@ class Project extends React.Component {
     const { project } = this.props;
 
     return (
-      <BaseLayout>
+      <BaseLayout { ...this.props.auth }>
         <h1>{ project.title }</h1>
         <p>{ project.body }</p>
       </BaseLayout>
