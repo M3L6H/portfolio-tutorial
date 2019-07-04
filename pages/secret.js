@@ -3,7 +3,7 @@ import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from "../components/BasePage";
 import withAuth from "../components/hoc/withAuth";
 
-import { getSecretData, getSecretDataServer } from "../actions";
+import { getSecretData } from "../actions";
 
 class Secret extends React.Component {
 

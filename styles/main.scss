@@ -1,10 +1,12 @@
 @import "./shared/fonts";
+@import "./shared/colors";
 
 // COMPONENTS
 @import "./header";
 
 // PAGES
 @import "./index";
+@import "./portfolio";
 
 html, body {
   height: 100%;
@@ -20,6 +22,11 @@ html, body {
   cursor: pointer;
 }
 
+.error {
+  font-weight: 700;
+  color: red;
+}
+
 .self-typed {
   font-size: 31px;
   font-weight: bold;
@@ -28,6 +35,17 @@ html, body {
 }
 
 .base-page {
-  padding-top: 150px;
-  color: rgba(#ffffff, 1);
+  padding: 150px 0;
+  color: rgba(#000000, 1);
+  background-color: rgba(#ecedee, 1);
+  min-height: 100vh;
+
+  .page-header {
+    .page-header-title {
+      font-weight: 700;
+      color: rgba(#000000, 1);
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
 }
