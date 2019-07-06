@@ -13,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "auth0-js": "^9.10.2",
@@ -22,6 +24,7 @@
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "formik": "^1.5.7",
+    "immutable": "^4.0.0-rc.12",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
@@ -36,6 +39,8 @@
     "react-datepicker": "^2.7.0",
     "react-dom": "^16.8.6",
     "react-typed": "^1.1.2",
-    "reactstrap": "^8.0.0"
+    "reactstrap": "^8.0.0",
+    "slate": "^0.47.4",
+    "slate-react": "^0.22.4"
   }
 }
