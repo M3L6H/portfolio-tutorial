@@ -1,14 +1,14 @@
 import { Button } from "reactstrap";
 
-const ControlMenu = (prop) => {
+const ControlMenu = (props) => {
 
   return (
     <div className="control-menu">
       <h1 className="title">Blog Editor</h1>
       <div className="status-box">
-        Saved
+        { props.isLoading ? "Saving..." : "Saved." }
       </div>
-      <Button color="success">Save</Button>
+      <Button disabled={ props.isLoading } color="success" onClick={ props.save }>Save</Button>
     </div>
   );
 }

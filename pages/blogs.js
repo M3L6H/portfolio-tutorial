@@ -4,10 +4,48 @@ import BasePage from "../components/BasePage";
 
 import { Container, Col, Row } from "reactstrap";
 import { Link } from "../routes";
+import { getBlogs } from "../actions";
 import moment from "moment";
 
-class Blog extends React.Component {
+import { shortenText } from "../helpers/utils";
+
+class Blogs extends React.Component {
+
+  static async getInitialProps({ req }) {
+    let blogs = [];
+
+    try {
+      blogs = await getBlogs(req);
+    } catch (err) {
+      console.error(err.message);
+    }
+
+    return { blogs };
+  }
+
+  renderBlogs(blogs) {
+    return (
+      <React.Fragment>
+        { blogs.map((blog, index) => (
+          <div key={ index } className="post-preview">
+            <Link route={ `/blogs/${ blog.slug }` }>
+              <a>
+                <h2 className="post-title">{ shortenText(blog.title, 48) }</h2>
+                <h3 className="post-subtitle">{ shortenText(blog.subTitle) }</h3>
+              </a>
+            </Link>
+            <p className="post-meta">
+              Posted by <a href="#">{ blog.author }</a> { moment(blog.createdAt).format("LL") }
+            </p>
+          </div>
+        )) }
+      </React.Fragment>
+    );
+  }
+
   render() {
+    const { blogs } = this.props;
+
     return (
       <BaseLayout className="blog-listing-page" headerType={ "landing" } { ...this.props.auth } >
         <div className="masthead" style={{ "backgroundImage": "url('/static/images/home-bg.jpg')" }}>
@@ -26,46 +64,7 @@ class Blog extends React.Component {
         <BasePage className="blog-body">
           <Row>
             <Col className="mx-auto" md="10" lg="8">
-              {
-                <React.Fragment>
-                  <div className="post-preview">
-                    <Link route={ `/blogs/blogId` }>
-                      <a>
-                        <h2 className="post-title">Very Nice Blog Post</h2>
-                        <h3 className="post-subtitle">My Programming Process</h3>
-                      </a>
-                    </Link>
-                    <p className="post-meta">
-                      Posted by <a href="#">Filip Jerga</a> {moment().format("LLLL")}
-                    </p>
-                  </div>
-                  <hr/>
-                  <div className="post-preview">
-                    <Link route={ `/blogs/blogId` }>
-                      <a>
-                        <h2 className="post-title">Very Nice Blog Post</h2>
-                        <h3 className="post-subtitle">My Programming Process</h3>
-                      </a>
-                    </Link>
-                    <p className="post-meta">
-                      Posted by <a href="#">Filip Jerga</a> {moment().format("LLLL")}
-                    </p>
-                  </div>
-                  <hr/>
-                  <div className="post-preview">
-                    <Link route={ `/blogs/blogId` }>
-                      <a>
-                        <h2 className="post-title">Very Nice Blog Post</h2>
-                        <h3 className="post-subtitle">My Programming Process</h3>
-                      </a>
-                    </Link>
-                    <p className="post-meta">
-                      Posted by <a href="#">Filip Jerga</a> {moment().format("LLLL")}
-                    </p>
-                  </div>
-                  <hr/>
-                </React.Fragment>
-              }
+              { this.renderBlogs(blogs) }
               <div className="clearfix">
                 <a href="#" className="btn btn-primary float-right">Older Posts &rarr;</a>
               </div>
@@ -81,7 +80,7 @@ class Blog extends React.Component {
                       <a href="#">
                         <span className="fa-stack fa-lg">
                           <i className="fas fa-circle fa-stack-2x"></i>
-                          <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                          <i className="fab fa-twitter fa-stack-1x fa-inverse"></i>
                         </span>
                       </a>
                     </li>
@@ -89,7 +88,7 @@ class Blog extends React.Component {
                       <a href="#">
                         <span className="fa-stack fa-lg">
                           <i className="fas fa-circle fa-stack-2x"></i>
-                          <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                          <i className="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                         </span>
                       </a>
                     </li>
@@ -97,7 +96,7 @@ class Blog extends React.Component {
                       <a href="#">
                         <span className="fa-stack fa-lg">
                           <i className="fas fa-circle fa-stack-2x"></i>
-                          <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                          <i className="fab fa-github fa-stack-1x fa-inverse"></i>
                         </span>
                       </a>
                     </li>
@@ -113,4 +112,4 @@ class Blog extends React.Component {
   }
 }
 
-export default Blog;
+export default Blogs;

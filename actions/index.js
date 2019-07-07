@@ -56,4 +56,40 @@ export const updateProject = async (projectData) => {
 export const deleteProject = (projectData) => {
   return axiosInstance.delete(`/portfolio/${ projectData._id }`, setAuthHeader())
     .then(res => res.data);
-}
+};
+
+// -------- BLOG ACTIONS ------------
+
+export const getBlogs = async (req) => {
+  return await axiosInstance.get("/blogs").then(res => res.data).catch(err => rejectPromise(err));
+};
+
+export const getBlogBySlug = async (slug) => {
+  return await axiosInstance.get(`/blogs/s/${ slug }`).then(res => res.data);
+};
+
+export const getUserBlogs = async (req) => {
+  return await axiosInstance.get("/blogs/me", setAuthHeader(req)).then(res => res.data);
+};
+
+export const createBlog = (blogData, lockId) => {
+  return axiosInstance.post(`/blogs?lockId${ lockId }`, blogData, setAuthHeader())
+    .then(res => res.data)
+    .catch(err => rejectPromise(err));
+};
+
+export const getBlogById = async (id) => {
+  return await axiosInstance.get(`/blogs/${ id }`).then(res => res.data);
+};
+
+export const updateBlog = async (blogData, blogId) => {
+  return await axiosInstance.patch(`/blogs/${ blogId }`, blogData, setAuthHeader())
+    .then(res => res.data)
+    .catch(err => rejectPromise(err));
+};
+
+export const deleteBlog = (blogData) => {
+  return axiosInstance.delete(`/blogs/${ blogData._id }`, setAuthHeader())
+    .then(res => res.data)
+    .catch(err => rejectPromise(err));
+};
