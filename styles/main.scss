@@ -1,10 +1,13 @@
 @import "./shared/fonts";
 @import "./shared/colors";
+@import "./shared/mixins";
 
 // COMPONENTS
 @import "./header";
 
 // PAGES
+@import "./about";
+@import "./cv";
 @import "./index";
 @import "./portfolio";
 @import "./blogs";

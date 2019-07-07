@@ -1,0 +1,39 @@
+.about-page {
+  .left-side {
+    margin-top: 10vh;
+
+    color: black;
+    text-align: left;
+  }
+
+  .fadein {
+    opacity: 0;
+    @include animation(fadein 2s);
+    @include animation-fill-mode(forwards);
+  }
+
+  .title {
+    @include animation-delay(0.5s);
+    font-size: 42px;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    @include animation-delay(1.8s);
+    font-size: 33px;
+  }
+
+  .subsubTitle {
+    @include animation-delay(3.3s);
+    font-size: 18px;
+  }
+
+  .body {
+    @include animation-delay(4.8s);
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}

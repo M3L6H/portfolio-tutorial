@@ -3,7 +3,7 @@ import Header from '../shared/Header';
 import Head from "next/head";
 
 const BaseLayout = (props) => {
-  const { children, className, isAuthenticated } = props;
+  const { children, className, isAuthenticated, user, isSiteOwner } = props;
   const headerType = props.headerType || "default";
 
   return (
@@ -15,7 +15,12 @@ const BaseLayout = (props) => {
       rel="stylesheet"/>
       </Head>
       <div className="layout-container">
-        <Header className={ `port-nav-${ headerType }` } isAuthenticated={ isAuthenticated } />
+        <Header
+          className={ `port-nav-${ headerType }` }
+          isAuthenticated={ isAuthenticated }
+          user={ user }
+          isSiteOwner={ isSiteOwner }
+        />
         <main className={`cover ${ className }`}>
           <div className="wrapper">{ children }</div>
         </main>

@@ -10,15 +10,36 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isFlipping: false
+    };
+
     this.roles = ["Developer", "Innovator", "Team-Player"];
+  }
+
+  componentDidMount() {
+    this.animateCard();
+  }
+
+  componentWillUnmount() {
+    this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
+  }
+
+  animateCard() {
+    this.cardAnimationInterval = setInterval(() => {
+      this.setState({
+        isFlipping: !this.state.isFlipping
+      });
+    }, 30000);
   }
 
   // Renderer. Must be implemented from React.Component
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { isFlipping } = this.state;
 
     return (
-      <BaseLayout className="cover" { ...this.props.auth } headerType="index">
+      <BaseLayout className={`cover ${ isFlipping ? "cover-1" : "cover-0" }`} { ...this.props.auth } headerType="index">
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png"/>
@@ -28,16 +49,28 @@ class Index extends React.Component {
             <Row>
               <Col md="6">
                 <div className="hero-section">
-                  <div className="{`flipper`}">
-                    <div className="back">
+                  <div className={`flipper${ isFlipping ? " isFlipping" : "" }`}>
+                    <div className="front">
                       <div className="hero-section-content">
-                        <h2>Full Stack Web Developer</h2>
+                        <h2>Software Engineer</h2>
                         <div className="hero-section-content-intro">
                           Have a look at my portfolio and job history.
                         </div>
                       </div>
                       <img src="/static/images/section-1.png" alt="Developer on laptop" className="image"/>
                       <div className="shadow-custom">
+                        <div className="shadow-inner"></div>
+                      </div>
+                    </div>
+                    <div className="back">
+                      <div className="hero-section-content">
+                        <h2>Full Stack Web Developer</h2>
+                        <div className="hero-section-content-intro">
+                          Professional and top-quality service.
+                        </div>
+                      </div>
+                      <img src="/static/images/section-2.png" alt="Developer on laptop" className="image"/>
+                      <div className="shadow-custom shadow-custom-2">
                         <div className="shadow-inner"></div>
                       </div>
                     </div>
