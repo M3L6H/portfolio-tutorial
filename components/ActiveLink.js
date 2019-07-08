@@ -10,9 +10,10 @@ const ActiveLink = ({ children, router, ...props }) => {
     className = `${ className } ${ props.activeClassName }`;
   }
 
-  delete props.activeClassName;
+  let linkProps = props;
+  delete linkProps.activeClassName;
 
-  return <Link { ...props }>{ React.cloneElement(child, { className }) }</Link>;
+  return <Link { ...linkProps }>{ React.cloneElement(child, { className }) }</Link>;
 }
 
 export default withRouter(ActiveLink);

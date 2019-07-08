@@ -130,7 +130,7 @@
 }
 
 .cover-1 {
-  background-image: linear-gradient(45deg, rgb(254, 202, 83), rgb(253, 157, 97));
+  // background-image: linear-gradient(45deg, rgb(254, 202, 83), rgb(253, 157, 97));
 }
 
 .flipper {
@@ -156,4 +156,18 @@
 
 .back {
   transform: rotateY(180deg);
+}
+
+.service-link {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  font-style: italic;
+  font-size: 12px;
+  padding-left: 6px;
+  padding-bottom: 3px;
+
+  > a {
+    color: white;
+  }
 }

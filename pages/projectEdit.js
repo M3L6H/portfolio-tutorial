@@ -22,7 +22,6 @@ class ProjectEdit extends React.Component {
       console.error(err);
     }
 
-    console.log(project);
     return { project };
   }
 

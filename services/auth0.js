@@ -5,12 +5,14 @@ import jwt from "jsonwebtoken";
 
 import { getCookieFromReq } from "../helpers/utils";
 
+const CLIENT_ID = process.env.CLIENT_ID;
+
 class Auth0 {
   constructor() {
     this.auth0 = new auth0.WebAuth({
       domain: "m3l6h.auth0.com",
-      clientID: "3v8jHpE5nNT7Ipadrp2aqSj0nZs0LtbZ",
-      redirectUri: "http://localhost:3000/callback",
+      clientID: CLIENT_ID,
+      redirectUri: `${ process.env.BASE_URL }/callback`,
       responseType: "token id_token",
       scope: "openid profile"
     });
@@ -28,7 +30,7 @@ class Auth0 {
           resolve();
         } else if (err) {
           reject(err);
-          console.log(err);
+          console.error(err);
         }
       });
     })
@@ -36,9 +38,7 @@ class Auth0 {
 
   setSession(authResult) {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    Cookies.set("user", authResult.idTokenPayload);
     Cookies.set("jwt", authResult.idToken);
-    Cookies.set("expiresAt", expiresAt);
   }
 
   login() {
@@ -46,13 +46,11 @@ class Auth0 {
   }
 
   logout() {
-    Cookies.remove("user");
     Cookies.remove("jwt");
-    Cookies.remove("expiresAt");
 
     this.auth0.logout({
       returnTo: "",
-      clientID: "3v8jHpE5nNT7Ipadrp2aqSj0nZs0LtbZ"
+      clientID: CLIENT_ID
     });
   }
 
@@ -81,7 +79,7 @@ class Auth0 {
 
           return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
         } catch (err) {
-          console.log(err);
+          console.error(err);
           return undefined;
         }
       }

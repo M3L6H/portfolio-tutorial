@@ -15,11 +15,11 @@ const BaseLayout = (props) => {
 
         <meta property="og:title" content="Michael Hollingworth - Developer, Innovator, Blogger" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content="http://localhost:3000" />
+        <meta property="og:url" content={ process.env.BASE_URL } />
         <meta property="og:type" content="website" />
         <meta property="og:description" content="My name is Michael Hollingworth and I am a software developer skilled in object-oriented design, web development, and mathematics." />
 
-        { canonical && <link rel="canonical" href={ `http://localhost:3000${ canonical }` } />}
+        { canonical && <link rel="canonical" href={ `${ process.env.BASE_URL }/${ canonical }` } />}
 
         <link rel="icon" type="image/ico" href="/static/favicon/favicon.ico" />
 
