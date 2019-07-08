@@ -8,7 +8,6 @@ const ActiveLink = ({ children, router, ...props }) => {
 
   if (router.asPath === props.route && props.activeClassName) {
     className = `${ className } ${ props.activeClassName }`;
-    return <Link { ...props }>{ React.cloneElement(child, { className }) }</Link>;
   }
 
   delete props.activeClassName;
