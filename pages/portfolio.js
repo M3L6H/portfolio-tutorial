@@ -18,7 +18,7 @@ class Portfolio extends React.Component {
     try {
       projects = await getProjects();
     } catch (err) {
-      consol.error(err);
+      console.error(err);
     }
 
     return { projects: projects };
