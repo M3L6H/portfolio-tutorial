@@ -22,10 +22,6 @@ const BaseLayout = (props) => {
         { canonical && <link rel="canonical" href={ `${ process.env.BASE_URL }/${ canonical }` } />}
 
         <link rel="icon" type="image/ico" href="/static/favicon/favicon.ico" />
-
-        <script src="https://kit.fontawesome.com/a77a0b5033.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"/>
       </Head>
       <div className="layout-container">
         <Header

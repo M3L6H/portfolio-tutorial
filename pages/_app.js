@@ -1,6 +1,7 @@
 import React from "react";
 import App, { Container } from "next/app";
 import { ToastContainer } from "react-toastify";
+import Fonts from "../helpers/Fonts";
 
 import auth0 from "../services/auth0";
 
@@ -24,6 +25,10 @@ class MyApp extends App {
     const auth = { user, isAuthenticated: !!user, isSiteOwner };
 
     return { pageProps, auth };
+  }
+
+  componentDidMount() {
+    Fonts();
   }
 
   render() {
