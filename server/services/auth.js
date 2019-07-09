@@ -1,6 +1,9 @@
 const jwt = require("express-jwt");
 const jwksRSA = require("jwks-rsa");
 
+const config = require("../config");
+const NAMESPACE = config.NAMESPACE;
+
 // Middleware
 exports.checkJWT = jwt({
   secret: jwksRSA.expressJwtSecret({
@@ -17,7 +20,7 @@ exports.checkJWT = jwt({
 exports.checkRole = role => (req, res, next) => {
   const user = req.user;
 
-  if (user && user[`${ process.env.NAMESPACE }/role`] === role) {
+  if (user && user[`${ NAMESPACE }/role`] && user[`${ NAMESPACE }/role`] === role) {
     next();
   } else {
     return res.status(401).send({ title: "Not authorized.", detail: "You are not authorized to access this data." });
