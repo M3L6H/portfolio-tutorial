@@ -1,4 +1,5 @@
 const express = require("express");
+const compression = require("compression");
 const path = require("path");
 const next = require("next");
 const routes = require("../routes");
@@ -38,12 +39,13 @@ const secretData = [{
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true })
   .then(() => console.log("Database connected"))
-  .catch(err => console.err(err));
+  .catch(err => console.error(err));
 
 app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(compression());
     server.use(bodyParser.json());
 
     server.use("/api/v1/books", bookRoutes);

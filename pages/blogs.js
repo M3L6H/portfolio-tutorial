@@ -104,6 +104,11 @@ class Blogs extends React.Component {
             </Container>
           </footer>
         </BasePage>
+        <style jsx>
+          {`
+            @import url("https://kit-free.fontawesome.com/releases/latest/css/free.min.css");
+          `}
+        </style>
       </BaseLayout>
     )
   }
